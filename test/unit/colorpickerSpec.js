@@ -107,7 +107,7 @@ describe('colorpicker module', function () {
       var $colorPickerHue = $colorPicker.find('colorpicker-hue');
       expect($scope.picker.color).toBe('#2b7787');
       $colorPickerHue.triggerHandler({
-        type : "click",
+        type : 'click',
         pageX: parseInt($colorPickerHue.offset().left, 10),
         pageY: parseInt($colorPickerHue.offset().top, 10),
         clientX: parseInt($colorPickerHue.offset().left, 10),
@@ -118,12 +118,12 @@ describe('colorpicker module', function () {
 
     it('should go to full saturation when selecting a hue and full-saturation is set', function() {
       $scope.picker = { color: '#2b7787' };
-      compileElement('<input colorpicker colorpicker-fixed-position="true" colorpicker-full-saturation="true" ng-model="picker.color" type="text" value="#2b7787" />', $scope);
+      compileElement('<input colorpicker colorpicker-fixed-position="true" colorpicker-full-saturation ng-model="picker.color" type="text" value="#2b7787" />', $scope);
       var $colorPicker = $('.colorpicker:last');
       var $colorPickerHue = $colorPicker.find('colorpicker-hue');
       expect($scope.picker.color).toBe('#2b7787');
       $colorPickerHue.triggerHandler({
-        type : "click",
+        type : 'click',
         pageX: parseInt($colorPickerHue.offset().left, 10),
         pageY: parseInt($colorPickerHue.offset().top, 10),
         clientX: parseInt($colorPickerHue.offset().left, 10),

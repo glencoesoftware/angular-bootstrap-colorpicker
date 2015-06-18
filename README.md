@@ -82,6 +82,11 @@ Auto hiding the color picker when a color has been selected
 <input colorpicker colorpicker-close-on-select type="text" ng-model="your_model" />
 ```
 
+Set to full saturation when changing hue
+```html
+<input colorpicker colorpicker-full-saturation type="text" ng-model="your_model" />
+```
+
 Events:
 ===============================
 

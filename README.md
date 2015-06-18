@@ -98,6 +98,11 @@ Customize a size of the color picker saturation panel
 <input colorpicker colorpicker-size="200" type="text" ng-model="your_model" />
 ```
 
+Set to full saturation when changing hue
+```html
+<input colorpicker colorpicker-full-saturation type="text" ng-model="your_model" />
+```
+
 Events:
 ===============================
 

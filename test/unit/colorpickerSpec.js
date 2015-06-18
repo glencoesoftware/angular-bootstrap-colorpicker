@@ -100,6 +100,38 @@ describe('colorpicker module', function () {
       elm.trigger('keyup');
       expect($colorPickerInput.val()).toBe('#333');
     });
+
+    it('should not change saturation or lightness when selecting a hue', function() {
+      $scope.picker = { color: '#2b7787' };
+      compileElement('<input colorpicker colorpicker-fixed-position="true" ng-model="picker.color" type="text" value="#2b7787" />', $scope);
+      var $colorPicker = $('.colorpicker:last');
+      var $colorPickerHue = $colorPicker.find('colorpicker-hue');
+      expect($scope.picker.color).toBe('#2b7787');
+      $colorPickerHue.triggerHandler({
+        type : "click",
+        pageX: parseInt($colorPickerHue.offset().left, 10),
+        pageY: parseInt($colorPickerHue.offset().top, 10),
+        clientX: parseInt($colorPickerHue.offset().left, 10),
+        clientY: parseInt($colorPickerHue.offset().top, 10)
+      });
+      expect($scope.picker.color).toBe('#872b2b');
+    });
+
+    it('should go to full saturation when selecting a hue and full-saturation is set', function() {
+      $scope.picker = { color: '#2b7787' };
+      compileElement('<input colorpicker colorpicker-fixed-position="true" colorpicker-full-saturation="true" ng-model="picker.color" type="text" value="#2b7787" />', $scope);
+      var $colorPicker = $('.colorpicker:last');
+      var $colorPickerHue = $colorPicker.find('colorpicker-hue');
+      expect($scope.picker.color).toBe('#2b7787');
+      $colorPickerHue.triggerHandler({
+        type : "click",
+        pageX: parseInt($colorPickerHue.offset().left, 10),
+        pageY: parseInt($colorPickerHue.offset().top, 10),
+        clientX: parseInt($colorPickerHue.offset().left, 10),
+        clientY: parseInt($colorPickerHue.offset().top, 10)
+      });
+      expect($scope.picker.color).toBe('#ff0000');
+    });
   });
 
   describe('Color', function () {

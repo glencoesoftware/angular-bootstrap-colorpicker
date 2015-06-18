@@ -274,6 +274,7 @@ angular.module('colorpicker.module', [])
               withInput = angular.isDefined(attrs.colorpickerWithInput) ? attrs.colorpickerWithInput : false,
               componentSize = angular.isDefined(attrs.colorpickerSize) ? attrs.colorpickerSize : 100,
               componentSizePx = componentSize + 'px',
+              fullSaturation = angular.isDefined(attrs.colorpickerFullSaturation) ? attrs.colorpickerFullSaturation : false,
               inputTemplate = withInput ? '<input type="text" name="colorpicker-input" spellcheck="false">' : '',
               closeButton = !inline ? '<button type="button" class="close close-colorpicker">&times;</button>' : '',
               template =
@@ -426,6 +427,12 @@ angular.module('colorpicker.module', [])
             if (slider.callTop) {
               pickerColor[slider.callTop].call(pickerColor, top / componentSize);
             }
+
+            if (fullSaturation && slider.callTop === 'setHue') {
+              pickerColor.setSaturation.call(pickerColor, 1);
+              pickerColor.setLightness.call(pickerColor, 0);
+            }
+
             previewColor();
             var newColor = pickerColor[thisFormat]();
             elem.val(newColor);

@@ -286,6 +286,9 @@ angular.module('colorpicker.module', [])
                       '<colorpicker-preview></colorpicker-preview>' +
                       inputTemplate +
                       closeButton +
+                      '<button type="button" class="colorpicker-quickalpha" data-alpha="1"><i class="fa fa-circle-o"></i></button>' +
+                      '<button type="button" class="colorpicker-quickalpha" data-alpha="0.5"><i class="fa fa-adjust"></i></button>' +
+                      '<button type="button" class="colorpicker-quickalpha" data-alpha="0"><i class="fa fa-circle"></i></button>' +
                       '</div>' +
                       '</div>',
               colorpickerTemplate = angular.element(template),
@@ -343,6 +346,23 @@ angular.module('colorpicker.module', [])
                 .on('mouseup', function(event){
                   emitEvent('colorpicker-selected-alpha');
                 });
+            colorpickerTemplate.find('.colorpicker-quickalpha')
+                .on('click', function(event) {
+                  var value = parseFloat(event.currentTarget.attributes['data-alpha'].value);
+                  pickerColor.setAlpha.call(pickerColor, value);
+                  previewColor();
+                  var newColor = pickerColor[thisFormat]();
+                  elem.val(newColor);
+                  if(ngModel) {
+                    $scope.$apply(ngModel.$setViewValue(newColor));
+                  }
+                  if (withInput) {
+                    pickerColorInput.val(newColor);
+                  }
+                  emitEvent('colorpicker-selected-alpha');
+                });
+          } else {
+            colorpickerTemplate.find('.colorpicker-quickalpha').hide();
           }
 
           sliderHue
@@ -565,7 +585,7 @@ angular.module('colorpicker.module', [])
             }
           }
 
-          colorpickerTemplate.find('button').on('click', function () {
+          colorpickerTemplate.find('button.close-colorpicker').on('click', function () {
             hideColorpickerTemplate();
           });
 

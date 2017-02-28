@@ -285,10 +285,20 @@ angular.module('colorpicker.module', [])
                       '<colorpicker-alpha><i></i></colorpicker-alpha>' +
                       '<colorpicker-preview></colorpicker-preview>' +
                       inputTemplate +
-                      closeButton +
+                      '<div>' +
                       '<button type="button" class="colorpicker-quickalpha" data-alpha="1"><i class="fa fa-circle-o"></i></button>' +
                       '<button type="button" class="colorpicker-quickalpha" data-alpha="0.5"><i class="fa fa-adjust"></i></button>' +
                       '<button type="button" class="colorpicker-quickalpha" data-alpha="0"><i class="fa fa-circle"></i></button>' +
+                      '</div>' +
+                      closeButton +
+                      '<div>' +
+                      '<button type="button" class="colorpicker-quickcolor" data-color="rgb(255,0,0)"></button>' +
+                      '<button type="button" class="colorpicker-quickcolor" data-color="rgb(255,0,255)"></button>' +
+                      '<button type="button" class="colorpicker-quickcolor" data-color="rgb(0,0,255)"></button>' +
+                      '<button type="button" class="colorpicker-quickcolor" data-color="rgb(0,255,255)"></button>' +
+                      '<button type="button" class="colorpicker-quickcolor" data-color="rgb(0,255,0)"></button>' +
+                      '<button type="button" class="colorpicker-quickcolor" data-color="rgb(255,255,0)"></button>' +
+                      '</div>' +
                       '</div>' +
                       '</div>',
               colorpickerTemplate = angular.element(template),
@@ -350,6 +360,7 @@ angular.module('colorpicker.module', [])
                 .on('click', function(event) {
                   var value = parseFloat(event.currentTarget.attributes['data-alpha'].value);
                   pickerColor.setAlpha.call(pickerColor, value);
+                  updatePointers();
                   previewColor();
                   var newColor = pickerColor[thisFormat]();
                   elem.val(newColor);
@@ -364,6 +375,29 @@ angular.module('colorpicker.module', [])
           } else {
             colorpickerTemplate.find('.colorpicker-quickalpha').hide();
           }
+
+          colorpickerTemplate.find('.colorpicker-quickcolor')
+            .on('click', function(event) {
+              var value = event.currentTarget.attributes['data-color'].value;
+              var alpha = 1.0 - parseFloat(pickerColor.value.a);
+              pickerColor.setColor(value);
+              pickerColor.setAlpha(alpha);
+              updatePointers();
+              previewColor();
+              var newColor = pickerColor[thisFormat]();
+              elem.val(newColor);
+              if(ngModel) {
+                $scope.$apply(ngModel.$setViewValue(newColor));
+              }
+              if (withInput) {
+                pickerColorInput.val(newColor);
+              }
+              emitEvent('colorpicker-selected-color');
+            })
+            .each(function () {
+              var value = this.attributes['data-color'].value;
+              angular.element(this).css('background-color', value);
+            });
 
           sliderHue
               .on('click', function(event) {
@@ -476,13 +510,17 @@ angular.module('colorpicker.module', [])
             if (withInput && !omitInnerInput) {
               pickerColorInput.val(elem.val());
             }
+            updatePointers();
+            previewColor();
+          }
+
+          function updatePointers() {
             pickerColorPointers.eq(0).css({
               left: pickerColor.value.s * componentSize + 'px',
               top: componentSize - pickerColor.value.b * componentSize + 'px'
             });
             pickerColorPointers.eq(1).css('top', componentSize * (1 - pickerColor.value.h) + 'px');
             pickerColorPointers.eq(2).css('top', componentSize * (1 - pickerColor.value.a) + 'px');
-            previewColor();
           }
 
           function getColorpickerTemplatePosition() {

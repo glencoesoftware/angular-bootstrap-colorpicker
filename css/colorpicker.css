@@ -173,7 +173,7 @@ colorpicker-preview {
 .colorpicker-quickalpha {
   -webkit-appearance: none;
   padding: 0;
-  margin-left: 39px;
+  margin-left: 29px;
   cursor: pointer;
   background: transparent;
   border: 0;
@@ -186,7 +186,7 @@ colorpicker-preview {
 }
 .colorpicker-quickcolor {
   margin: 0 2px;
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 14px;
   border: thin solid lightgrey;
 }

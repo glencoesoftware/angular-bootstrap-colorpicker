@@ -564,9 +564,10 @@ angular.module('colorpicker.module', [])
             hideColorpickerTemplate();
           }
 
-          function showColorpickerTemplate() {
+          var wasOpen = false;
 
-            if (!colorpickerTemplate.hasClass('colorpicker-visible')) {
+          function showColorpickerTemplate() {
+            if (!wasOpen && !colorpickerTemplate.hasClass('colorpicker-visible')) {
               update();
               colorpickerTemplate
                 .addClass('colorpicker-visible')
@@ -588,6 +589,9 @@ angular.module('colorpicker.module', [])
           }
 
           if (inline === false) {
+            elem.on('mousedown', function() {
+                wasOpen = colorpickerTemplate.hasClass('colorpicker-visible');
+            });
             elem.on('click', showColorpickerTemplate);
           } else {
             showColorpickerTemplate();

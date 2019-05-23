@@ -327,6 +327,7 @@ angular.module('colorpicker.module', [])
                 })
               .on('keyup', function() {
                 var newColor = this.value;
+                if (!/^#([0-9A-Z]{3}){1,2}$/i.test(newColor)) { return; }
                 elem.val(newColor);
                 if (ngModel && ngModel.$modelValue !== newColor) {
                   $scope.$apply(ngModel.$setViewValue(newColor));

@@ -277,8 +277,9 @@ angular.module('colorpicker.module', [])
               fullSaturation = angular.isDefined(attrs.colorpickerFullSaturation),
               inputTemplate = withInput ? '<input type="text" name="colorpicker-input" spellcheck="false">' : '',
               closeButton = !inline ? '<button type="button" class="close close-colorpicker">&times;</button>' : '',
+              classes = angular.isDefined(attrs.colorpickerClass) ? attrs.colorpickerClass : '',
               template =
-                  '<div class="colorpicker dropdown">' +
+                  '<div class="colorpicker dropdown ' + classes + '">' +
                       '<div class="dropdown-menu">' +
                       '<colorpicker-saturation><i></i></colorpicker-saturation>' +
                       '<colorpicker-hue><i></i></colorpicker-hue>' +

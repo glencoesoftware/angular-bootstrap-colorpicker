@@ -287,9 +287,9 @@ angular.module('colorpicker.module', [])
                       '<colorpicker-preview></colorpicker-preview>' +
                       inputTemplate +
                       '<div>' +
-                      '<button type="button" class="colorpicker-quickalpha" data-alpha="1"><i class="fa fa-circle-o"></i></button>' +
-                      '<button type="button" class="colorpicker-quickalpha" data-alpha="0.5"><i class="fa fa-adjust"></i></button>' +
-                      '<button type="button" class="colorpicker-quickalpha" data-alpha="0"><i class="fa fa-circle"></i></button>' +
+                      '<button type="button" class="colorpicker-quickalpha" data-alpha="1"><i class="far fa-circle"></i></button>' +
+                      '<button type="button" class="colorpicker-quickalpha" data-alpha="0.5"><i class="fas fa-adjust"></i></button>' +
+                      '<button type="button" class="colorpicker-quickalpha" data-alpha="0"><i class="fas fa-circle"></i></button>' +
                       '</div>' +
                       closeButton +
                       '<div>' +

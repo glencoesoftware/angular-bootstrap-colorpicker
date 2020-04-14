@@ -6,7 +6,6 @@ var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var karma = require('karma').server;
 
-gulp.task('default', ['css', 'jshint', 'test', 'compress']);
 
 gulp.task('less', function() {
   return gulp.src('./less/*.less')
@@ -14,7 +13,7 @@ gulp.task('less', function() {
     .pipe(gulp.dest('./css'));
 });
 
-gulp.task('css', ['less'], function() {
+gulp.task('css', gulp.series('less'), function() {
   return gulp.src('./css/colorpicker.css')
       .pipe(minifyCss())
       .pipe(rename('colorpicker.min.css'))
@@ -28,7 +27,7 @@ gulp.task('jshint', function () {
 });
 
 gulp.task('compress', function() {
-  gulp.src('./js/bootstrap-colorpicker-module.js')
+  return gulp.src('./js/bootstrap-colorpicker-module.js')
       .pipe(uglify())
       .pipe(rename('bootstrap-colorpicker-module.min.js'))
       .pipe(gulp.dest('./js'))
@@ -40,3 +39,5 @@ gulp.task('test', function (done) {
     singleRun: true
   }, done);
 });
+
+gulp.task('default', gulp.series('css', 'jshint', 'test', 'compress'));

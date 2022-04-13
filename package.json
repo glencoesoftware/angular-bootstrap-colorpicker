@@ -1,13 +1,13 @@
 {
   "name": "angular-bootstrap-colorpicker",
-  "version": "3.0.25",
+  "version": "3.0.32",
   "description": "Native AngularJS colorpicker directive",
   "main": "js/bootstrap-colorpicker-module.js",
   "directories": {
     "test": "test"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.2",
     "gulp-jshint": "^1.11.2",
     "gulp-less": "^3.0.3",
     "gulp-minify-css": "^1.2.1",

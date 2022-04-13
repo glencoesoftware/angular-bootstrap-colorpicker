@@ -170,3 +170,23 @@ colorpicker-preview {
   clear: both;
   background-position: 0 100%;
 }
+.colorpicker-quickalpha {
+  -webkit-appearance: none;
+  padding: 0;
+  margin-left: 29px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+}
+.colorpicker-quickalpha:first-child {
+  margin-left: 2px;
+}
+.colorpicker-quickcolor {
+  margin: 0 2px;
+  width: 12px;
+  height: 14px;
+  border: thin solid lightgrey;
+}

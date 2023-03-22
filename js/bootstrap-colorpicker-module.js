@@ -293,12 +293,12 @@ angular.module('colorpicker.module', [])
                       '</div>' +
                       closeButton +
                       '<div>' +
-                      '<button type="button" class="colorpicker-quickcolor" data-color="rgb(255,0,0)"></button>' +
-                      '<button type="button" class="colorpicker-quickcolor" data-color="rgb(255,0,255)"></button>' +
                       '<button type="button" class="colorpicker-quickcolor" data-color="rgb(0,0,255)"></button>' +
                       '<button type="button" class="colorpicker-quickcolor" data-color="rgb(0,255,255)"></button>' +
                       '<button type="button" class="colorpicker-quickcolor" data-color="rgb(0,255,0)"></button>' +
                       '<button type="button" class="colorpicker-quickcolor" data-color="rgb(255,255,0)"></button>' +
+                      '<button type="button" class="colorpicker-quickcolor" data-color="rgb(255,0,0)"></button>' +
+                      '<button type="button" class="colorpicker-quickcolor" data-color="rgb(255,0,255)"></button>' +
                       '<button type="button" class="colorpicker-quickcolor" data-color="rgb(255,255,255)"></button>' +
                       '</div>' +
                       '</div>' +
